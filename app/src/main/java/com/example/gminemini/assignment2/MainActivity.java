@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.namelist, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         staticSpinner.setAdapter(adapter);
-        titleName = staticSpinner.getSelectedItem().toString();
     }
 
     private void setListener() {
@@ -95,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             case R.id.submit: {
                 if (validate()) {
+                    titleName = staticSpinner.getSelectedItem().toString();
                     if (fileRadioButton.isChecked())
                         writeFile();
 
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         try {
             String writeString = titleName + name.getText().toString() + "\n" +
                     lastname.getText().toString() + "\n" +
-                    getAge() + getResources().getString(R.string.years) + "\n" +
+                    getAge() + "\n" +
                     email.getText().toString() + "\n" + phone.getText().toString();
 
             outputStream = openFileOutput(FILE_NAME, MODE_PRIVATE);
@@ -139,8 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editor.putInt("age", getAge());
         editor.putString("email", email.getText().toString());
         editor.putString("phone", phone.getText().toString());
-        editor.commit();
-
+        editor.apply();
     }
 
     private int getAge() {

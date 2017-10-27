@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 import static com.example.gminemini.assignment2.Constant.FILE_NAME;
@@ -50,18 +51,29 @@ public class Main2Activity extends AppCompatActivity {
         SharedPreferences shared_pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         name.setText(shared_pref.getString("name", "No Pref"));
         lastname.setText(shared_pref.getString("lastname", "No Pref"));
-        age.setText(shared_pref.getInt("age", 0) + " " + getResources().getString(R.string.age));
+        age.setText(shared_pref.getInt("age", 0) + " " +getResources().getString(R.string.years));
         email.setText(shared_pref.getString("email", "No Pref"));
         phone.setText(shared_pref.getString("phone", "No Pref"));
         setImg(shared_pref.getInt("age", 0));
     }
 
     private void setFormFile() {
-        try{
+        try {
             BufferedReader inputReader = new BufferedReader(new InputStreamReader(openFileInput(FILE_NAME)));
             StringBuffer stringBuffer = new StringBuffer();
+            String inputString;
+            while ((inputString = inputReader.readLine()) != null) {
+                stringBuffer.append(inputString + "\n");
+            }
+            String[] split = stringBuffer.toString().split("\n");
+            name.setText(split[0]);
+            lastname.setText(split[1]);
+            age.setText(split[2]+" "+getResources().getString(R.string.years));
+            email.setText(split[3]);
+            phone.setText(split[4]);
+            setImg(Integer.parseInt(split[2]));
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
