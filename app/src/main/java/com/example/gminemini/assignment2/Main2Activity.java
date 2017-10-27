@@ -7,6 +7,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+
+import static com.example.gminemini.assignment2.Constant.FILE_NAME;
 import static com.example.gminemini.assignment2.Constant.PREFS_NAME;
 
 public class Main2Activity extends AppCompatActivity {
@@ -52,6 +57,13 @@ public class Main2Activity extends AppCompatActivity {
     }
 
     private void setFormFile() {
+        try{
+            BufferedReader inputReader = new BufferedReader(new InputStreamReader(openFileInput(FILE_NAME)));
+            StringBuffer stringBuffer = new StringBuffer();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

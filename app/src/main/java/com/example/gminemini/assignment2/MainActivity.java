@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FileOutputStream outputStream;
     private Calendar calendar;
     private boolean isFromFile;
+    private String titleName;
 
     private SharedPreferences shared_pref;
 
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.namelist, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         staticSpinner.setAdapter(adapter);
+        titleName = staticSpinner.getSelectedItem().toString();
     }
 
     private void setListener() {
@@ -116,10 +118,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void writeFile() {
         try {
-            String writeString = name.getText().toString() + "/n" +
-                    lastname.getText().toString() + "/n" +
-                    getAge() + getResources().getString(R.string.years) + "/n" +
-                    email.getText().toString() + "/n" + phone.getText().toString();
+            String writeString = titleName + name.getText().toString() + "\n" +
+                    lastname.getText().toString() + "\n" +
+                    getAge() + getResources().getString(R.string.years) + "\n" +
+                    email.getText().toString() + "\n" + phone.getText().toString();
+
             outputStream = openFileOutput(FILE_NAME, MODE_PRIVATE);
             outputStream.write(writeString.getBytes());
             outputStream.close();
@@ -131,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void perfFile() {
         SharedPreferences.Editor editor = shared_pref.edit();
-        editor.putString("name", name.getText().toString());
+        editor.putString("name", titleName + name.getText().toString());
         editor.putString("lastname", lastname.getText().toString());
         editor.putInt("age", getAge());
         editor.putString("email", email.getText().toString());
