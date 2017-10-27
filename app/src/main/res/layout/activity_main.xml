@@ -83,7 +83,6 @@
                 android:layout_height="wrap_content">
 
                 <Spinner
-                    android:background="@drawable/shape"
                     android:id="@+id/list"
                     android:layout_width="@dimen/spinnerwidth"
                     android:layout_height="@dimen/heightedit"
@@ -129,11 +128,12 @@
 
                 <Button
                     android:id="@+id/setdpk"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="@dimen/heightedit"
                     android:layout_marginTop="@dimen/marginTopDPK"
                     android:background="@drawable/shape"
                     android:text="@string/set" />
+
             </LinearLayout>
 
             <EditText
@@ -189,6 +189,7 @@
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/shape"
         android:layout_marginTop="@dimen/margintop"
         android:text="@string/submit" />
 
