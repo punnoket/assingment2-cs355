@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Assignment2</string>
+    <string name="Assignment2">Assignment2</string>
+    <string name="name">Name</string>
+    <string name="Lastname">Lastname</string>
+    <string name="dob">Date of Birth</string>
+    <string name="email">E-mail</string>
+    <string name="PhoneNo">PhoneNo</string>
+    <string name="file">File</string>
+    <string name="pref_obj">Pref.Obj.</string>
+    <string name="submit">Submit</string>
+    <string name="set">Set</string>
+    <string-array name="namelist">
+        <item>นาย</item>
+        <item>นางสาว</item>
+        <item>นาง</item>
+        <item>เด็กหญิง</item>
+        <item>เด็กชาย</item>
+    </string-array>
+</resources>

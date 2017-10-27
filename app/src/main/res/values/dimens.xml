@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="heighttext">50dp</dimen>
+    <dimen name="padding">12dp</dimen>
+    <dimen name="heightedit">35dp</dimen>
+    <dimen name="set_width_stroke">2dp</dimen>
+    <dimen name="paddingleft">12dp</dimen>
+    <dimen name="marginbottom">12dp</dimen>
+    <dimen name="textsize">20sp</dimen>
+    <dimen name="headtextsize">26sp</dimen>
+    <dimen name="margintop">4dp</dimen>
+    <dimen name="marginleft">12dp</dimen>
+    <dimen name="paddingtop">0dp</dimen>
+    <dimen name="widthradio">100dp</dimen>
+</resources>
