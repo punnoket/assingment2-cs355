@@ -86,7 +86,7 @@
 
                 <Spinner
                     android:id="@+id/list"
-                    android:layout_width="97dp"
+                    android:layout_width="@dimen/spinnerwidth"
                     android:layout_height="match_parent"
                     android:spinnerMode="dropdown"></Spinner>
 
@@ -120,7 +120,7 @@
 
                 <EditText
                     android:id="@+id/edit3"
-                    android:layout_width="103dp"
+                    android:layout_width="@dimen/dobwidth"
                     android:layout_height="@dimen/heightedit"
                     android:layout_marginBottom="@dimen/marginbottom"
                     android:layout_marginTop="@dimen/margintop"
@@ -128,11 +128,11 @@
                     android:paddingLeft="@dimen/paddingleft" />
 
                 <Button
-                    android:padding="@dimen/margintop"
                     android:id="@+id/setdpk"
+
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/heightedit"
-                    android:layout_marginTop="@dimen/margintop"
+                    android:layout_marginTop="@dimen/marginTopDPK"
                     android:background="@drawable/shape"
                     android:text="@string/set" />
             </LinearLayout>

@@ -22,5 +22,8 @@
     <dimen name="set_marginBtn_text">20dp</dimen>
     <dimen name="set_height_edittext">35dp</dimen>
     <dimen name="paddingtop_setcenter">18px</dimen>
+    <dimen name="spinnerwidth">97dp</dimen>
+    <dimen name="dobwidth">130dp</dimen>
+    <dimen name="marginTopDPK">2dp</dimen>
 
 </resources>
