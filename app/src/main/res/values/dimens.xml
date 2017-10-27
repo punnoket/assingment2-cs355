@@ -24,6 +24,5 @@
     <dimen name="paddingtop_setcenter">18px</dimen>
     <dimen name="spinnerwidth">97dp</dimen>
     <dimen name="dobwidth">130dp</dimen>
-    <dimen name="marginTopDPK">2dp</dimen>
-
+    <dimen name="marginTopDPK">3dp</dimen>
 </resources>

@@ -14,11 +14,10 @@
     <string name="age">Age</string>
 
     <string-array name="namelist">
-        <item>นาย</item>
-        <item>นางสาว</item>
-        <item>นาง</item>
-        <item>เด็กหญิง</item>
-        <item>เด็กชาย</item>
+        <item>Mr.</item>
+        <item>Miss.</item>
+        <item>Mrs.</item>
+        <item>Dr.</item>
     </string-array>
 
 </resources>
