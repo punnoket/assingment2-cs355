@@ -135,7 +135,6 @@
                     android:background="@drawable/shape"
                     android:layout_height="@dimen/heightedit"/>
             </LinearLayout>
- />
 
             <EditText
                 android:id="@+id/edit4"
@@ -144,6 +143,7 @@
                 android:layout_marginBottom="@dimen/marginbottom"
                 android:layout_marginTop="@dimen/margintop"
                 android:background="@drawable/shape"
+                android:inputType="textEmailAddress"
                 android:paddingLeft="@dimen/paddingleft" />
 
             <EditText
@@ -152,6 +152,9 @@
                 android:layout_height="@dimen/heightedit"
                 android:layout_marginBottom="@dimen/marginbottom"
                 android:layout_marginTop="@dimen/margintop"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:maxLength="10"
                 android:background="@drawable/shape"
                 android:paddingLeft="@dimen/paddingleft" />
 
@@ -170,7 +173,6 @@
             android:id="@+id/radio_file"
             android:layout_width="@dimen/widthradio"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
             android:buttonTint="@color/colored"
             android:text="@string/file"
             />
@@ -178,7 +180,6 @@
             android:id="@+id/radio_pref"
             android:layout_width="@dimen/widthradio"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
             android:buttonTint="@color/colored"
             android:text="@string/pref_obj"/>
     </RadioGroup>

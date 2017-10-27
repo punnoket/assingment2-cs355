@@ -2,6 +2,7 @@ package com.example.gminemini.assignment2;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,52 +13,61 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
+
+import static com.example.gminemini.assignment2.Constant.FILE_NAME;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button dobButton;
     private Button submitButton;
     private EditText name;
     private EditText lastname;
-    private EditText age;
     private EditText email;
     private EditText phone;
     private RadioButton fileRadioButton;
     private RadioButton prefRadioButton;
     private EditText dobEditText;
-
+    private Spinner staticSpinner;
+    private FileOutputStream outputStream;
     private Calendar calendar;
+    private boolean isFromFile;
 
+    private SharedPreferences shared_pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         calendar = Calendar.getInstance();
-        Spinner staticSpinner = (Spinner) findViewById(R.id.list);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.namelist, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        staticSpinner.setAdapter(adapter);
+        shared_pref = getSharedPreferences(Constant.PREFS_NAME, MODE_PRIVATE);
+        isFromFile = false;
         setUI();
         setListener();
 
     }
 
     private void setUI() {
+        staticSpinner = (Spinner) findViewById(R.id.list);
         dobButton = (Button) findViewById(R.id.setdpk);
         submitButton = (Button) findViewById(R.id.submit);
         dobEditText = (EditText) findViewById(R.id.edit3);
         fileRadioButton = (RadioButton) findViewById(R.id.radio_file);
         prefRadioButton = (RadioButton) findViewById(R.id.radio_pref);
-
         name = (EditText) findViewById(R.id.edit1);
         lastname = (EditText) findViewById(R.id.edit2);
-        age = (EditText) findViewById(R.id.edit3);
         email = (EditText) findViewById(R.id.edit4);
         phone = (EditText) findViewById(R.id.edit5);
+        setSpinner();
+    }
+
+    private void setSpinner() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.namelist, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        staticSpinner.setAdapter(adapter);
     }
 
     private void setListener() {
@@ -89,7 +99,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (prefRadioButton.isChecked())
                         perfFile();
 
-                    // TODO next activity
+                    Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                    intent.putExtra("isFromFile", isFromFile);
+                    startActivity(intent);
                 }
             }
 
@@ -103,11 +115,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void writeFile() {
-
+        try {
+            String writeString = name.getText().toString() + "/n" +
+                    lastname.getText().toString() + "/n" +
+                    getAge() + getResources().getString(R.string.years) + "/n" +
+                    email.getText().toString() + "/n" + phone.getText().toString();
+            outputStream = openFileOutput(FILE_NAME, MODE_PRIVATE);
+            outputStream.write(writeString.getBytes());
+            outputStream.close();
+            isFromFile = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void perfFile() {
+        SharedPreferences.Editor editor = shared_pref.edit();
+        editor.putString("name", name.getText().toString());
+        editor.putString("lastname", lastname.getText().toString());
+        editor.putInt("age", getAge());
+        editor.putString("email", email.getText().toString());
+        editor.putString("phone", phone.getText().toString());
+        editor.commit();
 
+    }
+
+    private int getAge() {
+        return new Date().getYear() - calendar.getTime().getYear();
     }
 
     private boolean isEmailValid(CharSequence email) {
@@ -122,8 +156,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (lastname.length() == 0)
             lastname.setError("Please enter lastname");
 
-        if (age.length() == 0)
-            age.setError("Please enter age");
+        if (dobButton.length() == 0)
+            dobButton.setError("Please enter date of birth");
 
         if (!Character.isUpperCase(name.getText().toString().charAt(0))) {
             name.setError("Please enter first character Upper Case");
@@ -145,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         return name.length() != 0 &&
                 lastname.length() != 0 &&
-                age.length() != 0 &&
+                dobEditText.length() != 0 &&
                 email.length() != 0 &&
                 (phone.length() != 0 && phone.length() == 10) &&
                 isEmailValid(email.getText().toString()) &&
