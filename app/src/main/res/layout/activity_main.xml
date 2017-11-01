@@ -118,6 +118,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:editable="false"
                     android:id="@+id/edit3"
                     android:layout_width="@dimen/dobwidth"
                     android:layout_height="@dimen/heightedit"
